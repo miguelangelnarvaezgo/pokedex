@@ -1,0 +1,28 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Segunda entrega evaluable del el curso de FrontEnd de la UOC. Ejercicio: consumir datos de API rest con javascript.",
+  "main": "js/index.js",
+  "scripts": {
+    "dev": "parcel src/index.pug --dist-dir docs",
+    "pro": "parcel src/index.pug --dist-dir docs --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelangelnarvaezgo/pokedex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miguelangelnarvaezgo/pokedex/issues"
+  },
+  "homepage": "https://github.com/miguelangelnarvaezgo/pokedex#readme",
+  "dependencies": {
+    "parcel": "^2.6.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-pug": "^2.6.2",
+    "@parcel/transformer-sass": "^2.6.2"
+  }
+}

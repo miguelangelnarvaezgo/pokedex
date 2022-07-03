@@ -1,0 +1,384 @@
+/*----------------------------*/
+/*-----------RESET------------*/
+/*----------------------------*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	// line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*----------------------------*/
+/*---------END RESET----------*/
+/*----------------------------*/
+
+
+/*=================================================*/
+/*=================================================*/
+/*=================================================*/
+
+
+/*
+Declaración de variables. Setup básico de la maquetación.
+En Atomic Design esto equivale a tokenes.
+*/
+
+
+/*--------------------------------*/
+/*-----------BREAKPOINTS----------*/
+/*--------------------------------*/
+
+	$breakpoint-xxs: 320px;
+	$breakpoint-xs: 475px; // smartphone
+	$breakpoint-sm: 768px; // tablet
+	$breakpoint-md: 992px; // tablet portrait
+	$breakpoint-lg: 1280px; // desktop
+	$breakpoint-xl: 1440px;
+	$breakpoint-xxl: 1920px;
+
+/*--------------------------------*/
+/*--------SPACING SYSTEM----------*/
+/*--------------------------------*/
+
+	$space-xxs: 8px;
+	$space-xs: 16px;
+	$space-sm: 24px;
+	$space-md: 32px;
+	$space-lg: 48px;
+	$space-xl: 64px;
+	$space-xxl: 80px;
+	$space-xxxl: 96px;
+
+
+/*--------------------------------*/
+/*-------------FONTS--------------*/
+/*--------------------------------*/
+
+
+
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  // @import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root {
+    /*HEADER*/
+    --font-family-header: 'Noto Sans Mono', monospace;
+    --mod-font-size-header: 1.2;
+    --mod-line-height-header: 1.30;
+    --mod-margin-top-header: 1.5;
+    --mod-margin-bottom-header: 1;
+
+    /*BODY*/
+
+    --font-family-body: 'Noto Sans Mono', monospace;
+    --mod-font-size-body: 1.2;
+    --mod-line-height-body: 1.6;
+    --mod-margin-top-body: 1.1;
+    --mod-margin-bottom-body: 1;
+
+    /*font-weight-*/
+    --font-weight-black: 900;
+    --font-weight-bold: 600;
+    --font-weight-regular: 300;
+
+    /*font-size*/
+    --font-size-base-sm: 14px;
+    --font-size-base-md: 16px;
+    --font-size-base-lg: 18px;
+}
+
+@media (min-width: 0px) {
+  :root {
+    --font-size-base: var(--font-size-base-sm);
+  }
+}
+@media (min-width: 480px) {
+  :root {
+    --font-size-base: var(--font-size-base-md);
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --font-size-base: var(--font-size-base-lg);
+  }
+}
+
+:root {
+  --font-size-body: var(--font-size-base);
+  --font-size-h6: calc(var(--font-size-body) * var(--mod-font-size-header));
+  --font-size-h5: calc(var(--font-size-h6) * var(--mod-font-size-header));
+  --font-size-h4: calc(var(--font-size-h5) * var(--mod-font-size-header));
+  --font-size-h3: calc(var(--font-size-h4) * var(--mod-font-size-header));
+  --font-size-h2: calc(var(--font-size-h3) * var(--mod-font-size-header));
+  --font-size-h1: calc(var(--font-size-h2) * var(--mod-font-size-header));
+  --font-size-blockquote: calc(var(--font-size-h6));
+  --font-size-caption: calc(var(--font-size-body) / var(--mod-font-size-body));
+  --font-size-endnote: calc(var(--font-size-caption) / var(--mod-font-size-body));
+  --font-size-footnote: calc(var(--font-size-endnote) / var(--mod-font-size-body));
+
+  /*line-height-d*/
+  --line-height-body: calc(var(--font-size-base) * var(--mod-line-height-body));
+  --line-height-h6: calc(var(--font-size-h6) * var(--mod-line-height-header));
+  --line-height-h5: calc(var(--font-size-h5) * var(--mod-line-height-header));
+  --line-height-h4: calc(var(--font-size-h4) * var(--mod-line-height-header));
+  --line-height-h3: calc(var(--font-size-h3) * var(--mod-line-height-header));
+  --line-height-h2: calc(var(--font-size-h2) * var(--mod-line-height-header));
+  --line-height-h1: calc(var(--font-size-h1) * var(--mod-line-height-header));
+  --line-height-blockquote: calc(var(--font-size-blockquote) * var(--mod-line-height-body));
+  --line-height-caption: calc(var(--font-size-caption) * var(--mod-line-height-body));
+  --line-height-endnote: calc(var(--font-size-endnote) * var(--mod-line-height-body));
+  --line-height-footnote:calc(var(--font-size-footnote) * var(--mod-line-height-body));
+
+  	/*margin-top-d*/
+  /*	--margin-top-body: --font-size-body) * 1;*/
+  --margin-top-h6: calc(var(--font-size-h6) * var(--mod-margin-top-header));
+  --margin-top-h5: calc(var(--font-size-h5) * var(--mod-margin-top-header));
+  --margin-top-h4: calc(var(--font-size-h4) * var(--mod-margin-top-header));
+  --margin-top-h3: calc(var(--font-size-h3) * var(--mod-margin-top-header));
+  --margin-top-h2: calc(var(--font-size-h2) * var(--mod-margin-top-header));
+  --margin-top-h1: calc(var(--font-size-h1) * var(--mod-margin-top-header));
+  --margin-top-blockquote: calc(var(--font-size-blockquote) * var(--mod-margin-top-body));
+  --margin-top-caption: calc(var(--font-size-caption) * var(--mod-margin-top-body));
+  --margin-top-endnote: var(--space-xxs);
+  --margin-top-footnote: var(--space-xxs);
+
+  /*margin-bottom-d*/
+  --margin-bottom-body: calc(var(--font-size-body) * var(--mod-margin-bottom-body));
+  --margin-bottom-h6: calc(var(--font-size-h6) * var(--mod-margin-bottom-header));
+  --margin-bottom-h5: calc(var(--font-size-h5) * var(--mod-margin-bottom-header));
+  --margin-bottom-h4: calc(var(--font-size-h4) * var(--mod-margin-bottom-header));
+  --margin-bottom-h3: calc(var(--font-size-h3) * var(--mod-margin-bottom-header));
+  --margin-bottom-h2: calc(var(--font-size-h2) * var(--mod-margin-bottom-header));
+  --margin-bottom-h1: calc(var(--font-size-h1) * var(--mod-margin-bottom-header));
+  --margin-bottom-blockquote: calc(var(--font-size-blockquote) * var(--mod-margin-bottom-body));
+  --margin-bottom-caption: calc(var(--font-size-caption) * var(--mod-margin-bottom-body));
+  --margin-bottom-endnote: var(--space-xxs);
+  --margin-bottom-footnote: var(--space-xxs);
+	}
+
+/*--------------------------------*/
+/*-------------COLORS-------------*/
+/*--------------------------------*/
+
+  /*------------PRIMARY-----------*/
+  $hex-primary-01: #009ADE;
+  $hex-primary-02: #004987;
+
+  /*-----------SECUNDARY----------*/
+  $hex-secondary-01: #94B1F5;
+  $hex-secondary-02: #a09ce6;
+  $hex-secondary-03: #a09ce6;
+  $hex-secondary-04: #d59ce6;
+  $hex-secondary-05: #e69cd0;
+
+  /*-------------GREY-------------*/
+  $hex-grey-01:	#444444;
+  $hex-grey-02:	#e0e0e0;
+  $hex-grey-03:	#cfcfcf;
+  $hex-grey-04:	#bfbfbf;
+  $hex-grey-05:	#a8a8a8;
+
+  /*----------ELEMENTARY----------*/
+  $hex-white: #ffffff;
+  $hex-black: #000000;
+
+  /*-----------OPACITIES----------*/
+  $a-opacity-01: 1.0;
+  $a-opacity-02: 0.97;
+  $a-opacity-03: 0.77;
+
+
+
+  /*------------------------------*/
+  /*---------system logic---------*/
+  /*------------------------------*/
+
+  $color-primary-01: rgba($hex-primary-01, $a-opacity-01);
+  $color-primary-02: rgba($hex-primary-02, $a-opacity-01);
+
+  /*SECONDARY*/
+  $color-secondary-01: rgba($hex-secondary-01, $a-opacity-01);
+  $color-secondary-02: rgba($hex-secondary-02, $a-opacity-01);
+  $color-secondary-03: rgba($hex-secondary-03, $a-opacity-01);
+  $color-secondary-04: rgba($hex-secondary-04, $a-opacity-01);
+  $color-secondary-05: rgba($hex-secondary-05, $a-opacity-01);
+
+  /*GREY*/
+  $color-grey-01: rgba($hex-grey-01, $a-opacity-01);
+  $color-grey-02: rgba($hex-grey-02, $a-opacity-01);
+  $color-grey-03: rgba($hex-grey-03, $a-opacity-01);
+  $color-grey-04: rgba($hex-grey-04, $a-opacity-01);
+  $color-grey-05: rgba($hex-grey-05, $a-opacity-01);
+
+
+  /*BLACK & WHITE*/
+  $color-white: rgba($hex-white, $a-opacity-01);
+  $color-black: rgba($hex-black, $a-opacity-01);
+
+
+  /*-------OVERLAY------*/
+
+  $overlay-white-01: rgba($hex-white, $a-opacity-01);
+  $overlay-black-01: rgba($hex-black, $a-opacity-01);
+
+  $overlay-white-02: rgba($hex-white, $a-opacity-02);
+  $overlay-black-02: rgba($hex-black, $a-opacity-02);
+
+  $overlay-white-03: rgba($hex-white, $a-opacity-03);
+  $overlay-black-03: rgba($hex-black, $a-opacity-03);
+
+
+  /*-------COLOR OVERLAY------*/
+
+  /*Overlay colors*/
+  $hex-overlay-01: $hex-secondary-03;
+  $hex-overlay-02: $hex-secondary-04;
+  $hex-overlay-03: $hex-secondary-05;
+
+  $color-01-overlay-01: rgba($hex-overlay-01, $a-opacity-01);
+  $color-01-overlay-02: rgba($hex-overlay-01, $a-opacity-02);
+  $color-01-overlay-03: rgba($hex-overlay-01, $a-opacity-03);
+
+  $color-02-overlay-01: rgba($hex-overlay-02, $a-opacity-01);
+  $color-02-overlay-02: rgba($hex-overlay-02, $a-opacity-02);
+  $color-02-overlay-03: rgba($hex-overlay-02, $a-opacity-03);
+
+  $color-03-overlay-01: rgba($hex-overlay-03, $a-opacity-01);
+  $color-03-overlay-02: rgba($hex-overlay-03, $a-opacity-02);
+  $color-03-overlay-03: rgba($hex-overlay-03, $a-opacity-03);
+
+
+/*--------------------------------*/
+/*--------------GRID--------------*/
+/*--------------------------------*/
+
+
+	/*------GUTTERS (medianil)-------*/
+
+	$gutter-xxl: 32px;
+	$gutter-xl: 32px;
+	$gutter-lg: 24px;
+	$gutter-md: 24px;
+	$gutter-sm: 24px;
+	$gutter-xs: 16px;
+	$gutter-xxs: 16px;
+
+
+	/*------OFFSET (margen lateral)-------*/
+
+	$offset-xxl: 40px;
+	$offset-xl: 32px;
+	$offset-lg: 24px;
+	$offset-md: 16px;
+	$offset-sm: 16px;
+	$offset-xs: 8px;
+	$offset-xxs: 8px;
+
+
+	/*-------COLUMN-------*/
+
+	// $col-12: 100%;
+	// $col-11: calc($col-12 / 12) * 11;
+	// $col-10: calc($col-12 / 12) * 10;
+	// $col-9: calc($col-12 / 12) * 9;
+	// $col-8: calc($col-12 / 12) * 8;
+	// $col-7: calc($col-12 / 12) * 7;
+	// $col-6: calc($col-12 / 12) * 6;
+	// $col-5: calc($col-12 / 12) * 5;
+	// $col-4: calc($col-12 / 12) * 4;
+	// $col-3: calc($col-12 / 12) * 3;
+	// $col-2: calc($col-12 / 12) * 2;
+	// $col-1: calc($col-12 / 12) * 1;
+
+
+/*--------------------------------*/
+/*------------BORDERS-------------*/
+/*--------------------------------*/
+
+  $border-width-01: solid 1px;
+  $border-width-02: solid 2px;
+  $border-width-03: solid 3px;
+  $border-width-04: solid 4px;
+  $border-width-05: solid 5px;
+
+  $border-radius-01: 2px;
+  $border-radius-02: 3px;
+  $border-radius-03: 5px;
+  $border-radius-04: 7px;
+  $border-radius-05: 70px;
+
+/*--------------------------------*/
+/*------------SHADOWS-------------*/
+/*--------------------------------*/
+
+  $box-shadow-01: 0px 10px 10px 0px rgba(0,0,0,0.15);
+  $box-shadow-02: 0px 10px 10px 5px rgba(0,0,0,0.13);
+  $box-shadow-03: 0px 10px 15px 10px rgba(0,0,0,0.11);
+  $box-shadow-04: 0px 10px 15px 15px rgba(0,0,0,0.09);
+  $box-shadow-05: 0px 10px 20px 17px rgba(0,0,0,0.07);
+
+/*--------------------------------*/
+/*----------TRANSITIONS-----------*/
+/*--------------------------------*/
+
+  $transition-01: 2000ms;
+  $transition-02: 1500ms;
+  $transition-03: 1000ms;
+  $transition-04: 600ms;
+  $transition-05: 200ms;
+
+  $delay-01: 2200ms;
+  $delay-02: 1600ms;
+  $delay-03: 800ms;
+  $delay-04: 400ms;
+  $delay-05: 200ms;
+  $delay-06: 0ms;

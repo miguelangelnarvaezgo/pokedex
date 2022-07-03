@@ -1,0 +1,413 @@
+@use '../_01_basics/_settings' as *;
+@use '../_01_basics/_tools' as *;
+@use '../_01_basics/_elements' as *;
+
+
+
+@mixin grid-container-xxs {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-xs;
+  grid-template-columns: 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+@mixin grid-container-xs {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-xs;
+  grid-template-columns: 1fr 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+@mixin grid-container-sm {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-sm;
+  grid-template-columns: 1fr 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+@mixin grid-container-md() {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-xs;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+@mixin grid-container-lg {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-md;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+@mixin grid-container-xl {
+  // @include border-red;
+  display: grid;
+  grid-gap: $space-md;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-row: 1fr 1fr 1fr;
+}
+
+
+//---------------------------//
+//-------MEDIA QUERIES-------//
+//---------------------------//
+
+@media (min-width: $breakpoint-xxs) { //375
+  .sobremi-container{
+    .content-container {
+      display: flex;
+      flex-direction: column-reverse;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          padding: $space-lg;
+          border-radius: 1000px;
+          width: 60%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-xxs;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-xxs;
+      .card-container{
+        .card-img{
+          height: 100%;
+          svg {
+            g{
+              g {
+                path {
+                  stroke-dasharray: 320;
+                  stroke-dashoffset: 0;
+                  animation: dash 1s linear;
+                  animation-timing-function: ease-in-out;
+                  animation-duration: 3000ms;
+                  animation-delay: 3000ms;
+                  animation-play-state: running;
+                }
+
+                @keyframes dash {
+                  from {
+                    stroke-dashoffset: 320;
+                  }
+                  to {
+                    stroke-dashoffset: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-xxs;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-xs) { //600
+  .sobremi-container{
+    .content-container {
+      display: flex;
+      flex-direction: column-reverse;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          padding: $space-lg;
+          border-radius: 1000px;
+          width: 60%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-xs;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-xs;
+      .card-container{
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-xs;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-sm) { //768
+  .sobremi-container{
+    .content-container {
+      display: grid;
+      grid-gap: $space-md;
+      grid-template-columns: 3fr 1fr;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          border-radius: 1000px;
+          width: 100%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-sm;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-sm;
+      .card-container{
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-sm;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-md) { //992x
+  .sobremi-container{
+    .content-container {
+      display: grid;
+      grid-gap: $space-md;
+      grid-template-columns: 3fr 1fr;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          border-radius: 1000px;
+          width: 100%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-md;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-md;
+      .card-container{
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-md;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+  .sobremi-container{
+    .content-container {
+      display: grid;
+      grid-gap: $space-md;
+      grid-template-columns: 3fr 1fr;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          border-radius: 1000px;
+          width: 100%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-lg;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-lg;
+      .card-container{
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-lg;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-xl) { // 1440px
+  .sobremi-container{
+    .content-container {
+      display: grid;
+      grid-gap: $space-md;
+      grid-template-columns: 3fr 1fr;
+      .sobremi-container-col-01{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sobremi-container-col-02{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          border-radius: 1000px;
+          width: 100%;
+        }
+      }
+    }
+
+  }
+  .proyectos-container{
+    .proyects-container-col-01{
+    }
+    .proyects-container-col-02{
+      @include grid-container-xl;
+      .proyects-container{
+        .card-container{
+        }
+      }
+    }
+  }
+  .skills-container{
+    .skills-container-col-01{
+    }
+    .skills-container-col-02{
+      @include grid-container-xl;
+      // grid-template-columns: 1fr 1fr 1fr;
+      .card-container{
+      }
+    }
+  }
+  .hobbies-container{
+    .hobbies-container-col-01{
+    }
+    .hobbies-container-col-02{
+      @include grid-container-xl;
+      .hobbies-container{
+        .card-container{
+        }
+      }
+    }
+  }
+}

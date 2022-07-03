@@ -1,0 +1,37 @@
+@use '../_01_basics/_settings' as *;
+@use '../_01_basics/_tools' as *;
+@use '../_01_basics/_elements' as *;
+
+
+
+
+//---------------------------//
+//-------MEDIA QUERIES-------//
+//---------------------------//
+
+
+@media (min-width: $breakpoint-xxs) { //375
+  header {
+
+  }
+}
+@media (min-width: $breakpoint-xs) { //600
+  header {
+
+  }
+}
+@media (min-width: $breakpoint-sm) { //768
+  header {
+
+  }
+}
+@media (min-width: $breakpoint-md) { //992x
+  header {
+
+  }
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+  header {
+
+  }
+}

@@ -1,0 +1,16 @@
+/*
+Aquí ya descendemos a estilos que van a afectar a diversos
+bloques concretos de nuestro documento, navegador,
+botones, recuadros de utilidades diversas, migas de pan,
+cabecera, buscador, botones sociales, etc.
+Esta es la carpeta generalmente más llena de archivos,
+pues cada pequeña cosa de nuestro sitio tendrá un archivo
+donde se defina su aspecto.
+
+En Atomic serian las Molecules & Organisms
+*/
+
+@use 'nav' as *;
+@use '_footer' as *;
+@use '_card' as *;
+@use '_form' as *;

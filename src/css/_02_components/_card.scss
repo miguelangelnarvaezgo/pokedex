@@ -1,0 +1,21 @@
+@use '../_01_basics/_settings' as *;
+@use '../_01_basics/_tools' as *;
+@use '../_01_basics/_elements' as *;
+
+
+
+@media (min-width: $breakpoint-xxs) { //375
+
+}
+@media (min-width: $breakpoint-xs) { //600
+
+}
+@media (min-width: $breakpoint-sm) { //768
+
+}
+@media (min-width: $breakpoint-md) { //992x
+
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+
+}

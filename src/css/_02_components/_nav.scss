@@ -1,0 +1,191 @@
+@use '../_01_basics/_settings' as *;
+@use '../_01_basics/_tools' as *;
+@use '../_01_basics/_elements' as *;
+
+
+
+#btn-menu {
+  display: none;
+}
+
+#container-menu-itmes {
+  opacity: 0;
+  margin-right: -475px;
+  transition: 600ms;
+}
+
+#btn-menu:checked ~ nav > #container-label > #btn-menu-label >#bar-0, #bar-1, #bar-2 {
+  transition: 600ms;
+}
+#btn-menu:checked ~ nav > #container-label > #btn-menu-label > #bar-0 {
+  transition: 0ms;
+}
+#btn-menu:checked ~ nav > #container-label > #btn-menu-label > #bar-0 {
+  visibility: hidden;
+}
+#btn-menu:checked ~ nav > #container-label > #btn-menu-label > #bar-1 {
+  transform: rotate(45deg) translateY(0px) translateX(0px);
+
+}
+#btn-menu:checked ~ nav > #container-label > #btn-menu-label > #bar-2 {
+  transform: rotate(-45deg) translateY(-6px) translateX(5px);
+}
+#btn-menu:checked ~ nav > #container-menu-itmes {
+  margin-right: inherit;
+  opacity: 100%;
+}
+
+
+
+//---------------------------//
+//-------MEDIA QUERIES-------//
+//---------------------------//
+
+
+@media (min-width: $breakpoint-xxs) { //300
+  nav {
+    // @include border-red;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    overflow-x: hidden;
+    padding: $space-xs;
+
+    .container-label{
+      // @include border-red;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      label {
+        // @include border-red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: $space-xs;
+        cursor: pointer;
+
+          .bar:not(:first-of-type) {
+            margin-top: 4px;
+          }
+          .bar{
+            height: 4px;
+            width: 24px;
+            background-color: black;
+          }
+      }
+    }
+
+    .container-menu-items {
+      flex-basis: 100%;
+      ul {
+        // @include border-red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        li {
+          // @include border-red;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-right: $space-sm;
+          padding-bottom: $space-xs;
+
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-xs) { //475
+  nav {
+    // @include border-red;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    overflow-x: hidden;
+    padding: $space-xs;
+
+    .container-label{
+      // @include border-red;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      label {
+        // @include border-red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: $space-xs;
+        cursor: pointer;
+
+          .bar:not(:first-of-type) {
+            margin-top: 4px;
+          }
+          .bar{
+            height: 4px;
+            width: 24px;
+            background-color: black;
+          }
+      }
+    }
+
+    .container-menu-items {
+      flex-basis: 0;
+      ul {
+        // @include border-red;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        li {
+          // @include border-red;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-right: $space-sm;
+          padding-bottom: 0;
+
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-sm) { //768
+  nav {
+  }
+}
+@media (min-width: $breakpoint-md) { //992x
+  nav {
+
+  }
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+  nav {
+
+  }
+}
+@media (min-width: $breakpoint-xl) { // 1440px
+  nav {
+
+  }
+}
+@media (min-width: $breakpoint-xxl) { // 1920px
+
+  nav {
+
+  }
+}

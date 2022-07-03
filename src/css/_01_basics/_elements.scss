@@ -1,0 +1,317 @@
+/*
+Aquí colocaremos el CSS que afecta a los elementos nativos
+del HTML; es decir, comportamiento básico de etiquetas
+elementales como h1, article, section etc...
+
+En Atomic Design serian Atoms
+*/
+
+
+@use "./_settings" as *;
+@use "./_tools" as *;
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+//------------------------------------------------ - BASICS
+
+h1 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.3px;
+  color: $hex-black;
+
+  margin-top: var(--margin-top-h1);
+  margin-bottom: var(--margin-bottom-h1);
+}
+
+h2 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.3px;
+  margin-bottom: var(--space-sm);
+  color: $hex-black;
+  text-transform: uppercase;
+
+  margin-top: var(--margin-top-h2);
+  margin-bottom: var(--margin-bottom-h2);
+}
+
+h3 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.3px;
+  color: $hex-black;
+  text-transform: uppercase;
+
+  margin-top: var(--margin-top-h3);
+  margin-bottom: var(--margin-bottom-h3);
+}
+h4 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-black);
+  letter-spacing: 0;
+  color: $hex-black;
+
+  margin-top: var(--margin-top-h4);
+  margin-bottom: var(--margin-bottom-h4);
+}
+h5 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h5);
+  line-height: var(--line-height-h5);
+  font-weight: var(--font-weight-black);
+  letter-spacing: 0;
+  color: $hex-black;
+
+  margin-top: var(--margin-top-h5);
+  margin-bottom: var(--margin-bottom-h5);
+}
+
+h6 { // Large body/ subheader
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-h6);
+  line-height: var(--line-height-h6);
+  font-weight: var(--font-weight-black);
+  letter-spacing: 0;
+  color: $hex-black;
+
+  margin-top: var(--margin-top-h6);
+  margin-bottom: var(--margin-bottom-h6);
+}
+
+blockquote {
+  @extend .blockquote;
+  text-align: center;
+  font-style: italic;
+  &:before {
+    content: '"'
+  }
+  &:after {
+    content: '"'
+  }
+}
+
+.blockquote { // Quote text
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-blockquote);
+  line-height: var(--line-height-blockquote);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0;
+
+  margin-top: var(--margin-top-blockquote);
+  margin-bottom: var(--margin-bottom-blockquote);
+}
+
+p {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.1px;
+
+  margin-top: 0px;
+  margin-bottom: var(--margin-bottom-body);
+}
+
+span {
+  @extend p;
+}
+
+caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.1px;
+
+  margin-top: var(--margin-top-caption);
+  margin-bottom: var(--margin-bottom-caption);
+
+}
+
+.caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.1px;
+
+  margin-top: var(--margin-top-caption);
+  margin-bottom: var(--margin-bottom-caption);
+}
+
+.endnote {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-endnote);
+  line-height: var(--line-height-endnote);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.1px;
+
+  margin-top: var(--margin-top-endnote);
+  margin-bottom: var(--margin-bottom-endnote);
+}
+
+.footnote{
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-footnote);
+  line-height: var(--line-height-footnote);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.1px;
+
+  margin-top: var(--margin-top-footnote);
+  margin-bottom: var(--margin-bottom-footnote);
+}
+
+
+
+
+//------------------------------------------------- ESTILOS
+
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+
+
+//------------------------------------------------- LINKS
+
+
+a {
+  font-family: var(--font-family-body);
+  letter-spacing: -0.1px;
+  text-overflow: ellipsis;
+  white-space: nowrap; // nowrap impide que se utilicen los espacios en blanco para saltos de línea
+  text-decoration: none;
+  cursor: pointer;
+  word-wrap: break-word;
+  color: $hex-black;
+  font-weight: 300;
+}
+
+a:hover {
+  color: $hex-grey-05;
+}
+
+//------------------------------------------------- LIST
+
+li {
+  // @extend h4;
+}
+
+//------------------------------------------------- BUTTON
+
+button {
+  padding: $space-xxs $space-sm $space-xxs $space-sm;
+  background-color: $hex-black;
+  font-size: 16px;
+  border: none;
+  a{
+    color: $hex-white;
+  }
+}
+
+//------------------------------------------------- checkbox
+
+
+/*-----------FORM----------*/
+
+.checkbox-input-container {
+  margin-bottom: $space-md;
+  input {
+    display: none;
+  }
+  label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .checkbox-container {
+      background-color: $hex-white;
+      width: 12px;
+      height: 12px;
+      border: solid 1px $hex-black;
+      cursor: pointer;
+      margin-right: $space-xs;
+      span {
+        display: block;
+        visibility: hidden;
+        font-size: 13px;
+        font-weight: 900;
+        color: $hex-white;
+        transform: translateY(-7px) translateX(2px);
+      }
+    }
+
+    span {
+      margin: 0px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+  .check-input:checked ~ .btn-check-label > .checkbox-container {
+    background-color: $hex-secondary-01;
+  }
+  .check-input:checked ~ .btn-check-label > .checkbox-container > .check {
+    visibility: visible;
+  }
+}
+
+/*-----------PADDING's----------*/
+
+@media (min-width: $breakpoint-xxs) { //320
+  main, header {
+    margin: $space-sm;
+    margin-bottom: $space-xxs;
+    margin-top: $space-md;
+  }
+
+}
+@media (min-width: $breakpoint-xs) { //475
+  main, header {
+    margin: $space-md;
+    margin-bottom: $space-xxs;
+    margin-top: $space-lg;
+  }
+
+}
+@media (min-width: $breakpoint-sm) { //768
+  main, header {
+    margin: $space-xl;
+    margin-bottom: $space-xxs;
+    margin-top: $space-xl;
+  }
+}
+@media (min-width: $breakpoint-md) { //992x
+  main, header {
+    margin: calc($space-xxl);
+    margin-bottom: $space-xxs;
+    margin-top: $space-xl;
+  }
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+  main, header {
+    margin: calc($space-xxxl*1.5);
+    margin-bottom: $space-xxs;
+    margin-top: $space-xxl;
+  }
+}
+@media (min-width: $breakpoint-xl) { // 1440px
+  main, header {
+    margin: 20%;
+    margin-bottom: $space-xxs;
+    margin-top: $space-xxl;
+  }
+}

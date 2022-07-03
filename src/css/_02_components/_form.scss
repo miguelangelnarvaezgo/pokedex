@@ -1,0 +1,76 @@
+@use '../_01_basics/_settings' as *;
+@use '../_01_basics/_tools' as *;
+@use '../_01_basics/_elements' as *;
+
+
+
+
+
+//---------------------------//
+//-------MEDIA QUERIES-------//
+//---------------------------//
+
+@media (min-width: $breakpoint-xxs) { //375
+  form {
+    ul {
+      li {
+        .field-container{
+          display: flex;
+          flex-direction: column;
+          flex-basis: 100%;
+
+          margin-bottom: $space-md;
+
+          label {
+            p {
+              margin-bottom: $space-xxs;
+            }
+          }
+          input {
+            color: $hex-black;
+            font-size:16px;
+            font-family: var(--font-family-body);
+            height: $space-md;
+            border: solid 1px $hex-black;
+            padding: $space-xxs;
+          }
+          ::placeholder{
+            font-size:16px;
+            font-family: var(--font-family-body);
+          }
+          textarea{
+            color: $hex-black;
+            font-size:16px;
+            font-family: var(--font-family-body);
+            height: $space-xxxl;
+            border: solid 1px $hex-black;
+            padding: $space-xxs;
+          }
+        }
+      }
+    }
+
+    button {
+    }
+  }
+}
+@media (min-width: $breakpoint-xs) { //600
+  form {
+
+  }
+}
+@media (min-width: $breakpoint-sm) { //768
+  form {
+
+  }
+}
+@media (min-width: $breakpoint-md) { //992x
+  form {
+    max-width: 768px;
+  }
+}
+@media (min-width: $breakpoint-lg) { // 1280px
+  form {
+
+  }
+}

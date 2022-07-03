@@ -1,0 +1,10 @@
+/*
+Aquí tendremos los mixins y funciones, también de los preprocesadores.
+*/
+
+
+@mixin border-red {
+    border: solid 1px;
+    border-color: red;
+    box-sizing: border-box;
+}
