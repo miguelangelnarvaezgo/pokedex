@@ -532,37 +532,70 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"ebWYT":[function(require,module,exports) {
+// import {data} from './_data.js'
 var _dataJs = require("./_data.js");
-// import * as data from './_data.js';
-// element.addEventListener('DOMContentLoaded', function() {
-//   data()
-//   let lolo = JSON.parse(localStorage.getItem("data"));
-//   console.log(lolo);
-// })
 window.onload = function() {
-    // data()
-    // let lolo = JSON.parse(localStorage.getItem("data"));
-    let lolo = (0, _dataJs.data)("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000");
-    console.log(lolo);
+    _dataJs.getData("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000", "index");
+    let nomenclator = JSON.parse(localStorage.getItem("index"));
+    _dataJs.getData(nomenclator.results[0].url, String(nomenclator.results[0].name));
+    // let poke01 = data.parse(String(nomenclator.results[0].name));
+    let poke01 = JSON.parse(localStorage.getItem(nomenclator.results[0].name));
+    console.log(nomenclator.results.length);
+    console.log(poke01);
 };
 
 },{"./_data.js":"dgutU"}],"dgutU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "data", ()=>data);
-const data = async (url)=>{
-    const response = await fetch(url, {
+parcelHelpers.export(exports, "getData", ()=>getData);
+const getData = async (url, id)=>{
+    await fetch(url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-    });
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    else {
-        if (typeof Storage !== "undefined") return await response.json();
+    }).then((response)=>response.json()).then((data)=>{
+        if (typeof Storage !== "undefined") localStorage.setItem(id, JSON.stringify(data));
         else alert("Este navegador no es compatible con PokedexM");
-    }
-};
+    });
+} // export const parse = (id) => {
+ // 	return JSON.parse(localStorage.getItem(id);
+ // }
+ // ------------------------------------------ ASYNC directo a variable con try catch
+ // export const data = async (url) => {
+ //   try {
+ // 		const response = await fetch(url, {
+ // 			method: 'GET',
+ // 			headers: {
+ // 				'Content-Type': 'application/json',
+ // 			}
+ // 		})
+ // 		const data = await response.json()
+ // 		return data
+ // 	} catch (error) {
+ // 			throw new Error(`HTTP error! status: ${response.status}`);
+ // 			alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
+ // 	}
+ // }
+ // ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok
+ //
+ // export const data = async (url) => {
+ // 	const response = await fetch(url, {
+ // 			method: 'GET',
+ // 			headers: {
+ // 				'Content-Type': 'application/json',
+ // 			}
+ // 		}
+ // 	);
+ // 	if (response.ok) {
+ // 		console.log(response.status);
+ // 		return await response.json();
+ // 	} else {
+ // 		throw new Error(`HTTP error! status: ${response.status}`);
+ // 		alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
+ //   }
+ // }
+;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
