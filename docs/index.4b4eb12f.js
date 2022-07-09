@@ -535,34 +535,77 @@ function hmrAcceptRun(bundle, id) {
 // import {data} from './_data.js'
 var _dataJs = require("./_data.js");
 window.onload = function() {
-    _dataJs.getData("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000", "index");
-    let nomenclator = JSON.parse(localStorage.getItem("index"));
-    _dataJs.getData(nomenclator.results[0].url, String(nomenclator.results[0].name));
-    // let poke01 = data.parse(String(nomenclator.results[0].name));
-    let poke01 = JSON.parse(localStorage.getItem(nomenclator.results[0].name));
-    console.log(nomenclator.results.length);
-    console.log(poke01);
+    listPoke = _dataJs.list();
+    console.log(listPoke);
+    _dataJs.pokemon(listPoke[0].url);
 };
 
 },{"./_data.js":"dgutU"}],"dgutU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getData", ()=>getData);
-const getData = async (url, id)=>{
-    await fetch(url, {
+parcelHelpers.export(exports, "list", ()=>list);
+parcelHelpers.export(exports, "pokemon", ()=>pokemon);
+const list = ()=>{
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000", {
         method: "GET",
         headers: {
+            "Accept": "application/json",
             "Content-Type": "application/json"
         }
     }).then((response)=>response.json()).then((data)=>{
-        if (typeof Storage !== "undefined") localStorage.setItem(id, JSON.stringify(data));
+        if (typeof Storage !== "undefined") localStorage.setItem("data", JSON.stringify(data.results));
         else alert("Este navegador no es compatible con PokedexM");
     });
-} // export const parse = (id) => {
- // 	return JSON.parse(localStorage.getItem(id);
+    return JSON.parse(localStorage.getItem("data"));
+};
+const pokemon = async (url)=>{
+    await fetch(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    }).then((response)=>response.json()).then((data)=>{
+        console.log(data);
+    });
+} // export const list = async () => {
+ //   await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000', {
+ //     method: 'GET',
+ //     headers: {
+ //       'Accept': 'application/json',
+ //       'Content-Type': 'application/json',
+ //     }
+ //   })
+ //   .then(response => response.json())
+ //   .then(data => {
+ //     if (typeof(Storage) !== "undefined") {
+ //       localStorage.setItem("data", JSON.stringify(data.results));
+ //     } else {
+ //       alert('Este navegador no es compatible con PokedexM')
+ //     }
+ //   })
+ //   return JSON.parse(localStorage.getItem("data"))
  // }
- // ------------------------------------------ ASYNC directo a variable con try catch
+ // ------------------------------------------ ASYNC EN localStorage (devuelve Promise pendig con respuesta resolved)
  // export const data = async (url) => {
+ //   await fetch(url, {
+ //     method: 'GET',
+ //     headers: {
+ //       'Content-Type': 'application/json',
+ //     }
+ //   })
+ //   .then(response => response.json())
+ //   .then(data => {
+ //     if (typeof(Storage) !== "undefined") {
+ //       localStorage.setItem("data", JSON.stringify(data));
+ //     } else {
+ //       alert('Este navegador no es compatible con PokedexM')
+ //     }
+ //   })
+ // 	return JSON.parse(localStorage.getItem("data"))
+ // }
+ // ------------------------------------------ ASYNC directo a variable con try catch (devuelve Promise pendig con respuesta resolved)
+ // export const getData = async (url) => {
  //   try {
  // 		const response = await fetch(url, {
  // 			method: 'GET',
@@ -577,7 +620,7 @@ const getData = async (url, id)=>{
  // 			alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
  // 	}
  // }
- // ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok
+ // ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok (devuelve Promise pendig con respuesta resolved)
  //
  // export const data = async (url) => {
  // 	const response = await fetch(url, {
@@ -588,13 +631,51 @@ const getData = async (url, id)=>{
  // 		}
  // 	);
  // 	if (response.ok) {
- // 		console.log(response.status);
+ // 		// console.log(response.status);
  // 		return await response.json();
  // 	} else {
  // 		throw new Error(`HTTP error! status: ${response.status}`);
  // 		alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
  //   }
  // }
+ // // ------------------------------------------  ASYNC a variable (como debería ser, pero devuelve Promise vacía)
+ // export const data = async (url) => {
+ //   await fetch(url, {
+ //     method: 'GET',
+ //     headers: {
+ //       'Accept': 'application/json',
+ //       'Content-Type': 'application/json',
+ //     }
+ //   })
+ //   .then(response => response.json())
+ //   .then(data => {
+ //     return data
+ //     console.log(data.results);
+ //   })
+ // }
+ // export const lola = async (url) => {
+ //   await fetch(url)
+ //   .then(response => response.json())
+ //   .then(data => console.log(data));
+ //
+ // }
+ // // ------------------------------------------  NO FUNCIONA
+ // function data(url){
+ //     return fetch(url,
+ //     {
+ //     	method: "GET",
+ //       headers: {
+ //         'Accept': 'application/json',
+ //         'Content-Type': 'application/json',
+ //       },
+ //     })
+ //     .then(response => response.json())
+ //     .then(data => {
+ //       console.log(data);
+ //       return data;
+ //     })
+ //     .catch(error => console.warn(error));
+ //   }
 ;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {

@@ -1,15 +1,51 @@
-// // ------------------------------------------ NO ASYNC a localStorage
-// export const data = (url) => {
-//   fetch(url, {
+// // ------------------------------------------ NO ASYNC a localStorage (devuele el objeto OK!)
+export const list = () => {
+   fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem("data", JSON.stringify(data.results));
+    } else {
+      alert('Este navegador no es compatible con PokedexM')
+    }
+  })
+  return JSON.parse(localStorage.getItem("data"))
+}
+
+export const pokemon = async (url) => {
+  await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+}
+
+
+
+// export const list = async () => {
+//   await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000', {
 //     method: 'GET',
 //     headers: {
+//       'Accept': 'application/json',
 //       'Content-Type': 'application/json',
 //     }
 //   })
 //   .then(response => response.json())
 //   .then(data => {
 //     if (typeof(Storage) !== "undefined") {
-//       localStorage.setItem("data", JSON.stringify(data));
+//       localStorage.setItem("data", JSON.stringify(data.results));
 //     } else {
 //       alert('Este navegador no es compatible con PokedexM')
 //     }
@@ -18,7 +54,7 @@
 // }
 
 
-// ------------------------------------------ ASYNC EN localStorage
+// ------------------------------------------ ASYNC EN localStorage (devuelve Promise pendig con respuesta resolved)
 // export const data = async (url) => {
 //   await fetch(url, {
 //     method: 'GET',
@@ -37,30 +73,8 @@
 // 	return JSON.parse(localStorage.getItem("data"))
 // }
 
-
-export const getData = async (url, id) => {
-  await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (typeof(Storage) !== "undefined") {
-      localStorage.setItem(id, JSON.stringify(data));
-    } else {
-      alert('Este navegador no es compatible con PokedexM')
-    }
-  })
-}
-
-// export const parse = (id) => {
-// 	return JSON.parse(localStorage.getItem(id);
-// }
-
-// ------------------------------------------ ASYNC directo a variable con try catch
-// export const data = async (url) => {
+// ------------------------------------------ ASYNC directo a variable con try catch (devuelve Promise pendig con respuesta resolved)
+// export const getData = async (url) => {
 //   try {
 // 		const response = await fetch(url, {
 // 			method: 'GET',
@@ -76,7 +90,7 @@ export const getData = async (url, id) => {
 // 	}
 // }
 
-// ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok
+// ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok (devuelve Promise pendig con respuesta resolved)
 //
 // export const data = async (url) => {
 // 	const response = await fetch(url, {
@@ -87,10 +101,52 @@ export const getData = async (url, id) => {
 // 		}
 // 	);
 // 	if (response.ok) {
-// 		console.log(response.status);
+// 		// console.log(response.status);
 // 		return await response.json();
 // 	} else {
 // 		throw new Error(`HTTP error! status: ${response.status}`);
 // 		alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
 //   }
 // }
+
+// // ------------------------------------------  ASYNC a variable (como debería ser, pero devuelve Promise vacía)
+// export const data = async (url) => {
+//   await fetch(url, {
+//     method: 'GET',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//     }
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//     return data
+//     console.log(data.results);
+//   })
+// }
+
+
+// export const lola = async (url) => {
+//   await fetch(url)
+//   .then(response => response.json())
+//   .then(data => console.log(data));
+//
+// }
+
+// // ------------------------------------------  NO FUNCIONA
+// function data(url){
+//     return fetch(url,
+//     {
+//     	method: "GET",
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(data);
+//       return data;
+//     })
+//     .catch(error => console.warn(error));
+//   }
