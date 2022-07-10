@@ -84,7 +84,7 @@ export class Extended extends Pokemon {
     console.log('data');
   }
   static paint = () => {
-    console.log('maruhita diaz');
+    console.log('pintando Extended');
     this.card()
   }
 }
