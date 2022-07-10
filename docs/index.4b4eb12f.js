@@ -538,9 +538,9 @@ var _cardJs = require("./_card.js");
 window.onload = function() {
     _cardJs.Pokemon.store();
     let listPoke = JSON.parse(localStorage.getItem("data"));
-    _cardJs.Basic.paint(listPoke[434].url, "main");
-    let basicCard = new _cardJs.Basic();
-    console.log(basicCard);
+    // card.Basic.paint(listPoke[434].url, 'main')
+    _cardJs.Extended.paint(listPoke[434].url, "main");
+    console.log(_cardJs.Basic);
 };
 
 },{"./_card.js":"b4WUR"}],"b4WUR":[function(require,module,exports) {
@@ -554,7 +554,7 @@ class Pokemon {
         this.url = url;
         this.elem = elem;
     }
-    card = (elem, data)=>{
+    static card = (elem, data)=>{
         console.log(elem);
         console.log(data);
     };
@@ -570,7 +570,7 @@ class Pokemon {
             else alert("Este navegador no es compatible con PokedexM");
         });
     };
-    paint = async (url, elem)=>{
+    static paint = async (url, elem)=>{
         await fetch(url, {
             method: "GET",
             headers: {
@@ -594,7 +594,7 @@ class Pokemon {
                 type01: data.types[0].type.name,
                 type02: data.types[1].type.name
             };
-            Pokemon.card(elem, poke);
+            this.card(elem, poke);
         });
     };
 }
@@ -617,37 +617,14 @@ class Basic extends Pokemon {
     };
 }
 class Extended extends Pokemon {
-    card = (elem, data)=>{
-        console.log(data);
+    static card = ()=>{
+        console.log("data");
+    };
+    static paint = ()=>{
+        console.log("maruhita diaz");
+        this.card();
     };
 }
-// Extended.prototype.card = function () {
-//   console.log('marujita diaz');
-// }
-let basic = new Pokemon;
-basic.prototype.card = ()=>{
-    console.log("dolores");
-} // export const basic = (elem, data) => {
- //   const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
- //   document.querySelector(elem).insertAdjacentHTML('beforeend',`
- //       <article>
- //         <section id="card-basic-img-container-${data.id}" class="card-basic-img-container">
- //           <img src=${data.img}>
- //         </section>
- //         <section id="card-basic-content-container-${data.id}" class="card-basic-content-container">
- //           <h4>${name}</h4>
- //           <p><strong>Puntos de vida: ${data.hp}</strong></p>
- //           <p><strong>Ataque: ${data.attack}</strong></p>
- //           <p><strong>Defensa: ${data.defense}</strong></p>
- //         </section>
- //       </article>
- //     `)
- // }
- //
- // export const extend = (elem) => {
- //
- // }
-;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {

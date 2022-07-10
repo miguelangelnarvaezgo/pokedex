@@ -4,7 +4,7 @@ export class Pokemon {
     this.elem = elem
   }
 
-   card = (elem, data) => {
+  static card = (elem, data) => {
     console.log(elem);
     console.log(data);
   }
@@ -27,7 +27,7 @@ export class Pokemon {
     })
   }
 
-   paint = async (url, elem) => {
+   static paint = async (url, elem) => {
     await fetch(url, {
       method: 'GET',
       headers: {
@@ -53,9 +53,10 @@ export class Pokemon {
         type01: data.types[0].type.name,
         type02: data.types[1].type.name,
       };
-      Pokemon.card(elem, poke)
+      this.card(elem, poke)
     });
   }
+
 }
 
 export class Basic extends Pokemon {
@@ -75,45 +76,15 @@ export class Basic extends Pokemon {
         </article>
       `)
   }
-  // static paint = (url, elem) => {
-  //   console.log('maruhita diaz en '+ url + ' ' + elem);
-  // }
 }
+
 
 export class Extended extends Pokemon {
-  card = (elem, data) =>{
-    console.log(data);
+  static card = () =>{
+    console.log('data');
+  }
+  static paint = () => {
+    console.log('maruhita diaz');
+    this.card()
   }
 }
-
-// Extended.prototype.card = function () {
-//   console.log('marujita diaz');
-// }
-
-let basic = new Pokemon
-
-basic.prototype.card = () => {
-  console.log('dolores');
-}
-
-
-// export const basic = (elem, data) => {
-//   const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-//   document.querySelector(elem).insertAdjacentHTML('beforeend',`
-//       <article>
-//         <section id="card-basic-img-container-${data.id}" class="card-basic-img-container">
-//           <img src=${data.img}>
-//         </section>
-//         <section id="card-basic-content-container-${data.id}" class="card-basic-content-container">
-//           <h4>${name}</h4>
-//           <p><strong>Puntos de vida: ${data.hp}</strong></p>
-//           <p><strong>Ataque: ${data.attack}</strong></p>
-//           <p><strong>Defensa: ${data.defense}</strong></p>
-//         </section>
-//       </article>
-//     `)
-// }
-//
-// export const extend = (elem) => {
-//
-// }
