@@ -1,11 +1,15 @@
 // import {data} from './_data.js'
-import * as data from './_data.js';
+// import * as data from './_data.js';
+import * as card from './_card.js';
 
 
 
 window.onload = function() {
-   listPoke = data.list()
-   console.log(listPoke);
+    card.Pokemon.store()
+    let listPoke = JSON.parse(localStorage.getItem("data"))
 
-   data.pokemon(listPoke[0].url)
+    card.Basic.paint(listPoke[434].url, 'main')
+    let basicCard = new card.Basic()
+    console.log(basicCard);
+
 };

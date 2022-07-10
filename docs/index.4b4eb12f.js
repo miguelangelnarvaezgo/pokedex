@@ -533,149 +533,120 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"ebWYT":[function(require,module,exports) {
 // import {data} from './_data.js'
-var _dataJs = require("./_data.js");
+// import * as data from './_data.js';
+var _cardJs = require("./_card.js");
 window.onload = function() {
-    listPoke = _dataJs.list();
-    console.log(listPoke);
-    _dataJs.pokemon(listPoke[0].url);
+    _cardJs.Pokemon.store();
+    let listPoke = JSON.parse(localStorage.getItem("data"));
+    _cardJs.Basic.paint(listPoke[434].url, "main");
+    let basicCard = new _cardJs.Basic();
+    console.log(basicCard);
 };
 
-},{"./_data.js":"dgutU"}],"dgutU":[function(require,module,exports) {
+},{"./_card.js":"b4WUR"}],"b4WUR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "list", ()=>list);
-parcelHelpers.export(exports, "pokemon", ()=>pokemon);
-const list = ()=>{
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000", {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    }).then((response)=>response.json()).then((data)=>{
-        if (typeof Storage !== "undefined") localStorage.setItem("data", JSON.stringify(data.results));
-        else alert("Este navegador no es compatible con PokedexM");
-    });
-    return JSON.parse(localStorage.getItem("data"));
-};
-const pokemon = async (url)=>{
-    await fetch(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    }).then((response)=>response.json()).then((data)=>{
+parcelHelpers.export(exports, "Pokemon", ()=>Pokemon);
+parcelHelpers.export(exports, "Basic", ()=>Basic);
+parcelHelpers.export(exports, "Extended", ()=>Extended);
+class Pokemon {
+    constructor(url, elem){
+        this.url = url;
+        this.elem = elem;
+    }
+    card = (elem, data)=>{
+        console.log(elem);
         console.log(data);
-    });
-} // export const list = async () => {
- //   await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000', {
- //     method: 'GET',
- //     headers: {
- //       'Accept': 'application/json',
- //       'Content-Type': 'application/json',
- //     }
- //   })
- //   .then(response => response.json())
- //   .then(data => {
- //     if (typeof(Storage) !== "undefined") {
- //       localStorage.setItem("data", JSON.stringify(data.results));
- //     } else {
- //       alert('Este navegador no es compatible con PokedexM')
- //     }
- //   })
- //   return JSON.parse(localStorage.getItem("data"))
+    };
+    static store = ()=>{
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000", {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then((response)=>response.json()).then((data)=>{
+            if (typeof Storage !== "undefined") localStorage.setItem("data", JSON.stringify(data.results));
+            else alert("Este navegador no es compatible con PokedexM");
+        });
+    };
+    paint = async (url, elem)=>{
+        await fetch(url, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then((response)=>response.json()).then((data)=>{
+            const poke = {
+                id: data.id,
+                img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+                imgMini: data.sprites.front_default,
+                imgSVG: data.sprites.other.dream_world.front_default,
+                name: data.name,
+                experience: data.base_experience,
+                hp: data.stats[0].base_stat,
+                attack: data.stats[1].base_stat,
+                defense: data.stats[2].base_stat,
+                specialAttack: data.stats[3].base_stat,
+                specialDefense: data.stats[4].base_stat,
+                speed: data.stats[5].base_stat,
+                type01: data.types[0].type.name,
+                type02: data.types[1].type.name
+            };
+            Pokemon.card(elem, poke);
+        });
+    };
+}
+class Basic extends Pokemon {
+    static card = (elem, data)=>{
+        const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        document.querySelector(elem).insertAdjacentHTML("beforeend", `
+        <article>
+          <section id="card-basic-img-container-${data.id}" class="card-basic-img-container">
+            <img src=${data.img}>
+          </section>
+          <section id="card-basic-content-container-${data.id}" class="card-basic-content-container">
+            <h4>${name}</h4>
+            <p><strong>Puntos de vida: ${data.hp}</strong></p>
+            <p><strong>Ataque: ${data.attack}</strong></p>
+            <p><strong>Defensa: ${data.defense}</strong></p>
+          </section>
+        </article>
+      `);
+    };
+}
+class Extended extends Pokemon {
+    card = (elem, data)=>{
+        console.log(data);
+    };
+}
+// Extended.prototype.card = function () {
+//   console.log('marujita diaz');
+// }
+let basic = new Pokemon;
+basic.prototype.card = ()=>{
+    console.log("dolores");
+} // export const basic = (elem, data) => {
+ //   const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+ //   document.querySelector(elem).insertAdjacentHTML('beforeend',`
+ //       <article>
+ //         <section id="card-basic-img-container-${data.id}" class="card-basic-img-container">
+ //           <img src=${data.img}>
+ //         </section>
+ //         <section id="card-basic-content-container-${data.id}" class="card-basic-content-container">
+ //           <h4>${name}</h4>
+ //           <p><strong>Puntos de vida: ${data.hp}</strong></p>
+ //           <p><strong>Ataque: ${data.attack}</strong></p>
+ //           <p><strong>Defensa: ${data.defense}</strong></p>
+ //         </section>
+ //       </article>
+ //     `)
  // }
- // ------------------------------------------ ASYNC EN localStorage (devuelve Promise pendig con respuesta resolved)
- // export const data = async (url) => {
- //   await fetch(url, {
- //     method: 'GET',
- //     headers: {
- //       'Content-Type': 'application/json',
- //     }
- //   })
- //   .then(response => response.json())
- //   .then(data => {
- //     if (typeof(Storage) !== "undefined") {
- //       localStorage.setItem("data", JSON.stringify(data));
- //     } else {
- //       alert('Este navegador no es compatible con PokedexM')
- //     }
- //   })
- // 	return JSON.parse(localStorage.getItem("data"))
- // }
- // ------------------------------------------ ASYNC directo a variable con try catch (devuelve Promise pendig con respuesta resolved)
- // export const getData = async (url) => {
- //   try {
- // 		const response = await fetch(url, {
- // 			method: 'GET',
- // 			headers: {
- // 				'Content-Type': 'application/json',
- // 			}
- // 		})
- // 		const data = await response.json()
- // 		return data
- // 	} catch (error) {
- // 			throw new Error(`HTTP error! status: ${response.status}`);
- // 			alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
- // 	}
- // }
- // ------------------------------------------ ASYNC DIRECTO A VARIABLE con response.ok (devuelve Promise pendig con respuesta resolved)
  //
- // export const data = async (url) => {
- // 	const response = await fetch(url, {
- // 			method: 'GET',
- // 			headers: {
- // 				'Content-Type': 'application/json',
- // 			}
- // 		}
- // 	);
- // 	if (response.ok) {
- // 		// console.log(response.status);
- // 		return await response.json();
- // 	} else {
- // 		throw new Error(`HTTP error! status: ${response.status}`);
- // 		alert('Error de conexión con el servidor, intentalo de nuevo pasados uno minutos. Diculpa las molestias.')
- //   }
- // }
- // // ------------------------------------------  ASYNC a variable (como debería ser, pero devuelve Promise vacía)
- // export const data = async (url) => {
- //   await fetch(url, {
- //     method: 'GET',
- //     headers: {
- //       'Accept': 'application/json',
- //       'Content-Type': 'application/json',
- //     }
- //   })
- //   .then(response => response.json())
- //   .then(data => {
- //     return data
- //     console.log(data.results);
- //   })
- // }
- // export const lola = async (url) => {
- //   await fetch(url)
- //   .then(response => response.json())
- //   .then(data => console.log(data));
+ // export const extend = (elem) => {
  //
  // }
- // // ------------------------------------------  NO FUNCIONA
- // function data(url){
- //     return fetch(url,
- //     {
- //     	method: "GET",
- //       headers: {
- //         'Accept': 'application/json',
- //         'Content-Type': 'application/json',
- //       },
- //     })
- //     .then(response => response.json())
- //     .then(data => {
- //       console.log(data);
- //       return data;
- //     })
- //     .catch(error => console.warn(error));
- //   }
 ;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
